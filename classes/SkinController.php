@@ -12,7 +12,13 @@ class SkinController {
 
 		foreach($rawJSON->data as $champ) {
 			foreach($champ->skins as $skin) {
-				$this->skins[] = new Skin($skin);
+				if($skin->name === 'default') {
+					$champname = $champ->name;
+				}
+				else {
+					unset($champname);
+				}
+				$this->skins[] = new Skin($skin, $champname);
 			}
 		}
 

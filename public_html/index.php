@@ -2,6 +2,9 @@
 
 define("ROOT", dirname(__FILE__) . '/../');
 require_once ROOT . 'classes/IndexController.php';
+require_once ROOT . 'classes/ChoiceController.php';
+require_once ROOT . 'classes/MiscFunctions.php';
+
 /**
  * Step 1: Require the Slim Framework
  *
@@ -52,25 +55,13 @@ $app->post(
     }
 );
 
-// PUT route
-$app->put(
-    '/put',
-    function () {
-        echo 'This is a PUT route';
-    }
-);
-
-// PATCH route
-$app->patch('/patch', function () {
-    echo 'This is a PATCH route';
-});
-
-// DELETE route
-$app->delete(
-    '/delete',
-    function () {
-        echo 'This is a DELETE route';
-    }
+$app->get(
+	'/submitChoice',
+	function () {
+		$choiceController = new ChoiceController();
+		$choiceController->updateChoices($_GET['choice']);
+		MiscFunctions::redirect('/');
+	}
 );
 
 /**

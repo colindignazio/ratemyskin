@@ -6,8 +6,9 @@ class Skin {
 
 	public $name = false;
 
-	public function Skin($skin) {
+	public function Skin($skin, $champname = null) {
 		$this->id = $skin->id;
-		$this->name = $skin->name;
+
+		$this->name = ($champname) ? 'Default ' . $champname : $skin->name;
 	}
 } 
